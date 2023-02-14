@@ -4,20 +4,21 @@ name: Continuous Integration
 on: push
 
 jobs:
-  graph-models:
+  build:
     runs-on: ubuntu-latest
-
+    strategy:
+      max-parallel: 2
+      matrix:
+        python-version: [3.9, 3.10]
+    
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
         with:
-          # Make sure the actual branch is checked out when running on pull requests
-          ref: ${{ github.head_ref }}
-
-      - name: Generate Data Schema
-        uses: noah-software/django_action@v1.1
-        with:
-          # This part is also where you can pass other options, for example:
-          pip_path: testfolder/app/requirements.txt
-          project_path: app/
-          output_path: docs/model.png
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+     
