@@ -30,4 +30,25 @@ jobs:
       - name: Running Test
         run: |
           python manage.py test 
-     
+
+
+# databases:
+#   - name: productionDatabase
+#     databaseName: productionDatabase
+#     user: ziemieu
+
+# services:
+#   - type: web
+#     name: productionDatabase
+#     env: python
+#     buildCommand: "./build.sh"
+#     startCommand: "gunicorn myproject.wsgi:application"
+#     envVars:
+#       - key: DATABASE_URL
+#         fromDatabase:
+#           name: productionDatabase
+#           property: connectionString
+#       - key: SECRET_KEY
+#         generateValue: true
+#       - key: WEB_CONCURRENCY
+#         value: 4

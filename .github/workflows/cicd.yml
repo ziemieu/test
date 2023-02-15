@@ -1,0 +1,20 @@
+        # databases:
+        #   - name: deploy_renderer
+        #     databaseName: deploy_renderer
+        #     user: lakshan
+
+        # services:
+        #   - type: web
+        #     name: deploy_renderer
+        #     env: python
+        #     buildCommand: "./build.sh"
+        #     startCommand: "gunicorn myproject.wsgi:application"
+        #     envVars:
+        #       - key: DATABASE_URL
+        #         fromDatabase:
+        #           name: deploy_renderer
+        #           property: connectionString
+        #       - key: SECRET_KEY
+        #         generateValue: true
+        #       - key: WEB_CONCURRENCY
+        #         value: 4
